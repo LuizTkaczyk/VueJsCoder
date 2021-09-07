@@ -1,0 +1,62 @@
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+    <p>{{ contador }}</p>
+    <!-- Chamando a função somar ao clicar no botão, nesse caso interceptando o evento click -->
+
+    <!-- para passar um segundo parametro, sempre usar a palavra reservada $event -->
+    <button v-on:click="somar(10, $event)">Somar</button>
+    <hr>
+    <!-- Capturando eventos do mouse -->
+    <p v-on:mousemove="atualizarXeY">Mouse : {{ x }} e {{ y }}
+         <!-- 
+        <span v-on:mousemove="parar">Parar captura do mouse aqui</span>
+       ou -->
+        <span v-on:mousemove.stop="">Parar captura do mouse aqui</span>
+
+    </p>
+    <hr>
+    <!-- Com .prevent o evento não é executado -->
+    <a v-on:click.prevent="" href="https://www.google.com.br/">Google</a>
+    <hr>
+    <!-- Com v-on:keyup é capurado uma tecla do teclado -->
+    <input type="text" v-on:keyup="exibirAlerta" placeholder="input 1">
+
+    
+    <!-- Com v-on:keyup é capurado uma tecla do teclado, e exibindo o alerta somente apos o enter ser pressionado -->
+    <input type="text" v-on:keyup.enter="exibirAlerta" placeholder="input 2">
+
+
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            contador: 0,
+            x: 0,
+            y: 0
+        },
+        methods: {
+            somar(passo, event) {
+                console.log(passo, event.x)
+                this.contador += passo
+            },
+            atualizarXeY(e) {
+                this.x = e.clientX
+                this.y = e.clientY
+            },
+            /*
+            parar(e) {
+                e.stopPropagation();//interrompendo o evento
+
+            }
+            */
+           exibirAlerta(){
+               alert('Não digite !!!!!!!')
+           }
+
+        },
+    })
+
+
+</script>

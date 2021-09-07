@@ -1,0 +1,71 @@
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+    <p>{{ contadorUm }}</p>
+    <!-- Usando operador ternario -->
+    <p>{{contadorUm > 10 ? 'Maior que 10' : 'Menor que 10'}}</p>
+    <!-- Chamando a função somar ao clicar no botão, nesse caso interceptando o evento click -->
+    <button v-on:click="somar">Somar +1</button>
+
+    <hr>
+
+
+    <!-- Alterando o titulo através do two way data binding -->
+    <p>{{titulo}}</p>
+    <input type="text" v-model="titulo">
+    <hr>
+
+    <!-- Propriedades computadas -->
+    <button v-on:click="aumentar">Aumentar</button>
+    <button v-on:click="contadorTres++">Aumentar 2</button>
+    <button v-on:click="diminuir">Diminuir</button>
+    <p>Contador: {{ contadorDois }} | {{ contadorTres }}</p>
+    <p>Resultado: {{ resultado }}</p>
+
+
+
+
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            contadorUm: 0,
+            titulo: 'Luiz Antonio',
+            contadorDois: 0,
+            contadorTres: 0
+
+
+        }, computed: {
+            resultado() {
+                console.log('Método computado resultado chamado...')
+                return this.contadorDois >= 5 ? 'Maior que 5' : 'Menor que 5'
+            }
+
+        },
+        methods: {
+            somar() {
+                this.contadorUm++
+            },
+            aumentar() {
+                this.contadorDois++
+
+            },
+            diminuir() {
+                this.contadorDois--
+
+
+            },
+            /*
+            resultado() {
+                console.log('Método resultado chamado...')
+                return this.contadorDois >= 5 ? 'Maior que 5' : 'Menor que 5'
+            }
+            */
+
+
+        },
+    })
+
+
+</script>
