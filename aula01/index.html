@@ -13,8 +13,17 @@
 
     <div id="app">
         <input type="text" v-on:input="alterarTitulo">
-        <h1> {{ titulo.toUpperCase() }} </h1>
-
+        <!-- com v-once o atributo é lido somente uma vez -->
+        <h1 v-once> {{ titulo.toUpperCase() }} </h1>
+        <hr>
+        <h1> {{ saudacao() }} </h1>
+        <hr>
+        <!-- Com  o v-bind="" o endereço do link abre normalmente -->
+        <a :href="link" target="blank">Google 1</a>
+        <hr>
+        <!-- Interpretando um conteudo html -->
+        <p v-html="linkHtml"></p>
+        <hr>
     </div>
 
 
@@ -23,11 +32,21 @@
         new Vue({
             el: '#app',
             data: {
-                titulo: ''
+                titulo: 'Usando o Vue.Js',
+                link: 'https://www.google.com.br/',
+                linkHtml:'<a href="https://www.google.com.br/">Google 2 </a>'
             },
             methods: {
                 alterarTitulo(event) {
                     this.titulo = event.target.value
+                },
+                saudacao: function () {
+                    //acessando -titulo- através do this. (com o this também é possivel acessar funções)
+                    //console.log(this)
+                    this.titulo = 'Boa tarde tche!'
+                    return this.titulo
+
+                    //return 'Chamando uma função!'
                 }
             },
         })
