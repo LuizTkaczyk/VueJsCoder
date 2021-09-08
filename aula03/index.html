@@ -22,6 +22,12 @@
     <p>Contador: {{ contadorDois }} | {{ contadorTres }}</p>
     <p>Resultado: {{ resultado }}</p>
 
+    <hr>
+    <p>{{contadorUm}}</p>
+    <!-- Onde estiver v-on usar o @ -->
+    <button @click="somar">Somar 1</button>
+    <!-- Onde estiver vbind usar o : -->
+    <input type="text" :value="contadorUm">
 
 
 
@@ -33,7 +39,8 @@
             contadorUm: 0,
             titulo: 'Luiz Antonio',
             contadorDois: 0,
-            contadorTres: 0
+            contadorTres: 0,
+            contador4:0
 
 
         }, computed: {
@@ -65,6 +72,18 @@
 
 
         },
+        watch:{//com watch pode-se monitorar o uso de uma propriedade
+            // contadorUm(novo, antigo){
+            //     console.log(`Novo valor : ${novo}, Valor antigo ${antigo}`)
+            // }
+
+            //depois de 2 segundos o contador1 volta a ser zero
+            // contadorUm(novo, antigo){
+            //     setTimeout(()=>{
+            //         this.contadorUm = 0
+            //     }, 2000)
+            // }
+        }
     })
 
 

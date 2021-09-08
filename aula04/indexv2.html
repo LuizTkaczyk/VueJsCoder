@@ -1,0 +1,69 @@
+<script src="https://unpkg.com/vue"></script>
+<style>
+    /* Aplicando cores dinamicamente com Vue */
+
+    .caixas {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .demo {
+        width: 100px;
+        height: 100px;
+        background-color: gray;
+        border-radius: 20%;
+
+    }
+
+    .c1 {
+        background-color: red;
+
+    }
+
+    .c2 {
+        background-color: green;
+
+    }
+
+    .c3 {
+        background-color: blue;
+    }
+
+    .girar {
+        transform: rotate(45deg);
+    }
+</style>
+
+<div id="app">
+    <div class="caixas">
+        <div class="demo" :style="{'background-color':cor}"></div>
+        <div class="demo" :style="meuEstilo"></div>
+        <div class="demo"></div>
+    </div>
+    <hr>
+    <input type="color" v-model="cor">
+    <input type="range" v-model="borda" max="50" min="0">
+   
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            cor: "black",
+            borda: 0,
+            
+
+        },
+        computed: {
+            meuEstilo() {
+                return {
+                    backgroundColor: this.cor,
+                    borderRadius: `${this.borda}%`,
+                   
+                }
+            }
+        }
+    })
+
+
+</script>
