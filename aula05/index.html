@@ -1,0 +1,43 @@
+<!-- condicionais -->
+<meta charset="UTF-8">
+<script src="https://unpkg.com/vue"></script>
+<style>
+    
+</style>
+
+<div id="app">
+    <!-- O v-if retira o elemento da página, diferentemente do v-show -->
+    <template v-if="logado">
+        <p>Usuário: {{nome}}</p>
+        <p>Perfil:ADMIN</p>
+    </template>
+    
+    <p v-else-if="anonimo">Navegando anonimamente</p>
+    <p v-else>Nenhum usuário logado!</p>
+    
+    <button @click="logado = !logado">{{ logado ? 'Sair' : 'Entrar'}}
+    </button>
+    
+    <input type="checkbox" v-model="anonimo">
+    <hr>
+    <!-- v-show apenas esconde !!, ele continua no documento -->
+    <footer v-show="logado">
+        Desenvolvido por {{nome}}
+    </footer>
+    <footer v-show="!logado">
+        Desenvolvido por alguém
+    </footer>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            nome:"LUIZ",
+            logado:false,
+            anonimo: true
+        },
+        
+    })
+
+
+</script>

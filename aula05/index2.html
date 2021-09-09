@@ -1,0 +1,62 @@
+<!--listas -->
+<meta charset="UTF-8">
+<script src="https://unpkg.com/vue"></script>
+<style>
+    ul {
+        list-style-type: square;
+    }
+
+    h1,
+    h3 {
+        display: inline;
+    }
+</style>
+
+<div id="app">
+    <!-- Sempre usar a key para o vue identificar onde está sendo chamado a lista gerada  -->
+    <button @click="cores.push('branco')" :key="cor">Adicionar</button>
+    <ul>
+        <!-- Percorrendo o array de cores com vfor -->
+        <li v-for="cor in cores">{{cor}}</li>
+    </ul>
+    
+    <ul>
+        <!-- Percorrendo o array de cores com vfor e acessando o indice -->
+        <li v-for="(cor,i) in cores">{{cor}}-{{i+1}}</li>
+    </ul>
+    <hr>
+    <template v-for="(cor,i) in cores">
+        <h1>{{cor}}</h1>
+        <h3>{{i +1}}</h3>
+    </template>
+
+    <hr>
+    <ul>
+        <li v-for="pessoa in pessoas">
+            <span v-for="(valor, chave,index) in pessoa">
+                {{chave}}={{valor}} ({{index+1}}) ,
+            </span>
+        </li>
+    </ul>
+
+    <hr>
+    <div v-for="n in 10">{{n}}º</div>
+
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            cores: ['vermelho', 'verde', 'amarelo', 'azul'],
+            pessoas: [
+                { nome: 'Luiz', idade: 30, peso: 60 },
+                { nome: 'Antonio', idade: 40, peso: 80 },
+                { nome: 'Maria', idade: 50, peso: 90 },
+                { nome: 'Ana', idade: 60, peso: 70 },
+            ]
+        },
+
+    })
+
+
+</script>
