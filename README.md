@@ -1,4 +1,4 @@
-# Curso de Vue.js da Coder
+# Curso de Vue.js da Coder - Em andamento
 
 Curso Vue JS 2 - O Guia Completo (incl. Vue Router & Vuex)
 
