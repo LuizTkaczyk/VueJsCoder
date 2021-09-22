@@ -1,6 +1,6 @@
 <template>
     <div class="caixa verde">
-        Conteúdo do Componente Verde
+        Conteúdo do Componente <strong>Verde</strong> 
     </div>
 </template>
 
