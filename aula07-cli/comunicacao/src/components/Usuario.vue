@@ -2,14 +2,25 @@
 
 <template>
   <div class="container">
-    <h1>Componente Usuário</h1>
+    <h1>Componente Usuário (este é um componente pai)</h1>
     <p>Esse é um componente muito legal!</p>
-    <p>Nome é <strong>{{nome}}</strong></p>
+    <p>
+      Nome é <strong>{{ nome }}</strong>
+    </p>
+    <p>Idade é : {{ idade }}</p>
     <button @click="alterarNome">Alterar nome</button>
     <hr />
     <div class="componentes">
-      <app-usuario-info :nome='nome' @nomeAlterado="nome = $event" :reiniciarFn="reiniciarNome"/>
-      <app-usuario-editar />
+      <app-usuario-info
+        :nome="nome"
+        :idade='idade'
+        @nomeAlterado="nome = $event"
+        :reiniciarFn="reiniciarNome"
+      />
+      <app-usuario-editar 
+      :idade='idade' 
+      
+      /> <!--Captando o valor do elemento filho UsuarioEditar.vue, e atualizando os outros elementos filhos |-->
     </div>
   </div>
 </template>
@@ -23,15 +34,17 @@ export default {
   data() {
     return {
       nome: "Luiz",
+      idade: 32,
     };
   },
   methods: {
     alterarNome() {
       this.nome = "Martineli";
     },
-    reiniciarNome(){
-        this.nome='Antonio Luiz'
-    }
+    //Criando uma callback para reiniciar o nome
+    reiniciarNome() {
+      this.nome = "Antonio Luiz";
+    },
   },
 };
 </script>

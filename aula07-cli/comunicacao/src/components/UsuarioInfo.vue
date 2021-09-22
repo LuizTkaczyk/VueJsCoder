@@ -2,18 +2,22 @@
 
 <template>
   <div class="componente">
-    <h2>As Informações de Usuário</h2>
+    <h2>As Informações de Usuário (esse é um componente filho)</h2>
     <p>Vários detalhes...</p>
     <p>
       Nome do usuário: <strong>{{ inverterNome() }}</strong>
 
+
     </p>
+
+    <p>Idade do usuário <strong>{{idade}}</strong></p>
     <button @click="reiniciarNome()">Reiniciar nome</button>
-    <button @click="reiniciarFn()">Reiniciar nome "CallBack"</button>
+    <button @click="reiniciarFn()">Reiniciar nome "CallBack"</button> <!-- callback chamada do componente pai-->
   </div>
 </template>
 
 <script>
+import barramento from '@/barramento'
 export default {
   //definindo propriedades, a propriedade nome está vindo de Usuario.vue (componente pai), também pode se ter funções em props
   props: {
@@ -28,7 +32,8 @@ export default {
         //   }
 
       },
-      reiniciarFn: Function
+      reiniciarFn: Function,
+      idade:Number  
   },
   methods: {
       inverterNome(){
@@ -37,8 +42,14 @@ export default {
       },
       reiniciarNome(){
           this.nome="Luiz Antonio"
-          this.$emit('nomeAlterado', this.nome) //Evento enviado ao componente pai
+          this.$emit('nomeAlterado', this.nome) //Evento enviado ao componente pai (Usuario.vue)
       }
+  },
+ //se comunicando com o UsuarioEditar via barramento, sem passar pelo elemento pai
+  created() {
+      barramento.quandoIdadeMudar(idade=>{
+          this.idade = idade
+      })
   },
 };
 </script>
