@@ -16,7 +16,13 @@ export default {
         return {
             usuario: null
         }
-    }
+    },
+    //exibindo as informações do UsuarioLista em UsuarioDetalhe através do ciclo de vida created()
+    created() {
+        barramento.onUsuarioSelecionado(usuario =>{
+            this.usuario = usuario
+        })
+    },
 }
 </script>
 

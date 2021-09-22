@@ -1,8 +1,11 @@
 import Vue from 'vue'
-export default Vue({
+export default new Vue({
     methods: {
-        selecionaUsuario(nome){
-            this.$emit('nomeUsers', nome)
+        selecionaUsuario(usuario){
+            this.$emit('usuarioSelecionado', usuario)
+        },
+        onUsuarioSelecionado(callback){
+            this.$on('usuarioSelecionado', callback)
         }
     },
 })

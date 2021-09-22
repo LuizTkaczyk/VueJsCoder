@@ -8,7 +8,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="usuario in usuarios" :key="usuario.id">
+                <!-- capturando o nome do usuario do laço e atribuindo na função selecionar usuario-->
+                <tr v-for="usuario in usuarios" :key="usuario.id" @click="selecionaUsuario(usuario)">
                     <td>{{ usuario.id }}</td>
                     <td>{{ usuario.nome }}</td>
                 </tr>
@@ -20,7 +21,14 @@
 <script>
 import barramento from '@/barramento'
 export default {
-    props: { usuarios: Array }
+    props: { usuarios: Array },
+    methods: {
+        //metodo que capta o array de usuario selecionado e armazena em barramento
+        selecionaUsuario(usuario){
+            barramento.selecionaUsuario(usuario)
+
+        }
+    },
 }
 </script>
 
