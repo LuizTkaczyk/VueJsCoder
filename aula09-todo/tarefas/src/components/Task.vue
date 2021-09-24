@@ -13,7 +13,7 @@ export default {
   computed: {
     stateClass() {
       return {
-        //adicionando uma classe a task, como pending ou done, desse modo adicionando estilos deferentes
+        //adicionando uma classe a task, como pending ou done, desse modo adicionando estilos deferentes (pending vem de App.vue)
         pending: this.task.pending,
         done: !this.task.pending,
       };
