@@ -19,20 +19,39 @@
         </Rotulo>
         <Rotulo nome="Características do Problema">
           <span class="mr-4"
-            ><input type="checkbox" value="reproduzivel" v-model="caracteristicas" /> Reproduzível</span
+            ><input
+              type="checkbox"
+              value="reproduzivel"
+              v-model="caracteristicas"
+            />
+            Reproduzível</span
           >
           <span
-            ><input type="checkbox" value="intermitente" v-model="caracteristicas" /> Intermitente</span
+            ><input
+              type="checkbox"
+              value="intermitente"
+              v-model="caracteristicas"
+            />
+            Intermitente</span
           >
         </Rotulo>
         <Rotulo nome="Qual produto?">
-          <span class="mr-4"><input type="radio" /> Web</span>
-          <span class="mr-4"><input type="radio" /> Mobile</span>
-          <span><input type="radio" /> Outro</span>
+          <span class="mr-4"
+            ><input type="radio" value="web" v-model="produto" /> Web</span
+          >
+          <span class="mr-4"
+            ><input type="radio" value="mobile" v-model="produto" />
+            Mobile</span
+          >
+          <span
+            ><input type="radio" value="outro" v-model="produto" /> Outro</span
+          >
         </Rotulo>
         <Rotulo nome="Prioridade">
-          <select name="" id="">
-            <option></option>
+          <select v-model="prioridade">
+            <option v-for="prioridade in prioridades" :key="prioridade.codigo" :value="prioridade.nome" :selected="prioridade.codigo === 1">
+              {{ prioridade.nome }}
+            </option>
           </select>
         </Rotulo>
         <Rotulo nome="Primeira Reclamação?">
@@ -58,16 +77,16 @@
         </Rotulo>
         <Rotulo nome="Características do Problema">
           <span>
-			  <ul>
-				  <li v-for="c in caracteristicas" :key="c">{{c}}</li>
-			  </ul>
-		  </span>
+            <ul>
+              <li v-for="c in caracteristicas" :key="c">{{ c }}</li>
+            </ul>
+          </span>
         </Rotulo>
         <Rotulo nome="Qual produto?">
-          <span>???</span>
+          <span>{{ produto }}</span>
         </Rotulo>
         <Rotulo nome="Prioridade">
-          <span>???</span>
+          <span>{{prioridade}}</span>
         </Rotulo>
         <Rotulo nome="Primeira Reclamação?">
           <span>???</span>
@@ -87,7 +106,14 @@ export default {
   data() {
     return {
       mensagem: "",
-	  caracteristicas:[],
+      caracteristicas: [],
+      produto: "web",
+      prioridade:1,
+      prioridades: [
+        { codigo: 1, nome: "Baixa" },
+        { codigo: 2, nome: "Moderada" },
+        { codigo: 3, nome: "Alta" },
+      ],
 
       usuario: {
         email: "",
