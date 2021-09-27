@@ -2,7 +2,7 @@
   <div id="app">
     <h1>Registrar Reclamação</h1>
     <div class="conteudo">
-      <form class="painel">
+      <form class="painel" v-if="!enviado">
         <div class="cabecalho">Formulário</div>
         <Rotulo nome="E-mail">
           <!-- o .trim remove os espaços em branco -->
@@ -55,13 +55,14 @@
           </select>
         </Rotulo>
         <Rotulo nome="Primeira Reclamação?">
-          <Escolha />
+          <Escolha v-model="escolha" />
         </Rotulo>
         <hr />
-        <button>Enviar</button>
+        <!-- chamando o método enviar -->
+        <button @click.prevent="enviar">Enviar</button>
       </form>
       <!-- ************************************************************RESULTADO***************************************************************** -->
-      <div class="painel">
+      <div class="painel" v-else>
         <div class="cabecalho">Resultado</div>
         <Rotulo nome="E-mail">
           <span>{{ usuario.email }}</span>
@@ -89,7 +90,7 @@
           <span>{{prioridade}}</span>
         </Rotulo>
         <Rotulo nome="Primeira Reclamação?">
-          <span>???</span>
+          <span>{{escolha}}</span>
         </Rotulo>
       </div>
     </div>
@@ -103,6 +104,12 @@ import Escolha from "./components/Escolha.vue";
 export default {
   name: "app",
   components: { Rotulo, Escolha },
+  methods: {
+    enviar(){
+      
+      this.enviado = true
+    }
+  },
   data() {
     return {
       mensagem: "",
@@ -120,6 +127,8 @@ export default {
         senha: "",
         idade: "",
       },
+      escolha:true,
+      enviado:false
     };
   },
 };

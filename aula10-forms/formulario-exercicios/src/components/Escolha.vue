@@ -1,7 +1,9 @@
 <template>
+<!-- Dando uma chamada de emit do tipo input, alterando o valor de value -->
     <div class="escolha"
-        @click="ligado = !ligado"
-        :class="{ligado, desligado: !ligado}">
+    
+        @click="$emit('input', !value)"
+        :class="{ligado:value, desligado: !value}">
         <div v-if="ligado" class="botao"></div>
         <div v-else class="botao"></div>
     </div>
@@ -9,11 +11,13 @@
 
 <script>
 export default {
-    data() {
-        return {
-            ligado: false
+    props:{
+        value:{
+            type: Boolean, required:true
         }
-    }
+    },
+   
+    
 }
 </script>
 
