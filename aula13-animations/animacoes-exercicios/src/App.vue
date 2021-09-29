@@ -47,49 +47,105 @@
     >
       <div v-if="exibir2" class="caixa"></div>
     </transition>
+    <hr />
+    <div class="mb-4">
+      <b-button
+        variant="primary"
+        @click="componenteSelecionado = 'AlertaInfo'"
+        class="mr-2"
+        >informação</b-button
+      >
+      <b-button
+        variant="secondary"
+        @click="componenteSelecionado = 'AlertaAdvertencia'"
+        >Advertencia</b-button
+      >
+    </div>
+    <transition name="fade" mode="out-in">
+    <component :is="componenteSelecionado"></component>
+    </transition>
+    <hr>
+
+    <b-button @click="adicionarAlunos" >Adicionar alunos</b-button>
+
+    <transition-group name="slide" tag="div">
+     <b-list-group v-for="(aluno,i) in alunos" :key="aluno" >
+        <b-list-group-item class="" >{{aluno}} <b-button @click="removerAlunos(i)">Excluir</b-button></b-list-group-item>
+    </b-list-group>
+    </transition-group>
+
+   
+    
   </div>
 </template>
 
 <script>
+import AlertaAdvertencia from "./AlertaAdvertencia.vue";
+import AlertaInfo from "./AlertaInfo.vue";
 export default {
+  components: { AlertaAdvertencia, AlertaInfo },
   data() {
     return {
       msg: "Uma mensagem de informação para o usuário!",
       exibir: false, //true para a animação aparecer logo ao carregar a página
       tipoAnimacao: "fade",
       exibir2: true,
+      larguraBase: 0,
+      componenteSelecionado: "AlertaInfo",
+      alunos:['Luiz', 'Antonio', 'Marta', 'Franciso', 'Ivonete']
     };
   },
   methods: {
-	  //Entrada
+    adicionarAlunos(){
+      const s = Math.random().toString(36).substring(2)
+      this.alunos.push(s)
+    },
+    removerAlunos(indice){
+      //removendo um da lista (indice se refere a 'i'  de alunos em b-list-group)
+      this.alunos.splice(indice, 1)
+    },
+    animar(el, done, negativo) {
+      let rodada = 1;
+      const temporizador = setInterval(() => {
+        const novaLargura =
+          this.larguraBase + (negativo ? -rodada * 10 : rodada * 10);
+        el.style.width = `${novaLargura}px`;
+        rodada++;
+        if (rodada > 30) {
+          clearInterval(temporizador);
+          done();
+        }
+      }, 20);
+    },
+    //Entrada
     beforeEnter(el) {
-      console.log('beforeEnter');
+      this.larguraBase = 0;
+      el.style.width = `${this.larguraBase}px`;
     },
     enter(el, done) {
-      console.log('enter');
-	  done()
+      this.animar(el, done, false);
     },
-    afterEnter(el) {
-      console.log('afterEnter');
-    },
-    enterCancelled(el) {
-      console.log('enterCancelled');
-    },
+    // afterEnter(el) {
+    //   console.log("afterEnter");
+    // },
+    // enterCancelled(el) {
+    //   console.log("enterCancelled");
+    // },
 
-	//saida
+    //saida
     beforeLeave(el) {
-      console.log('beforeLeave');
+      this.larguraBase = 300;
+      el.style.width = `${this.larguraBase}px`;
     },
-    leave(el,done) {
-      console.log('leave');
-	  done()
+    leave(el, done) {
+      this.animar(el, done, true);
     },
-    afterLeave(el) {
-      console.log('afterLeave');
-    },
-    leaveCancelled(el) {
-      console.log('leaveCancelled');
-    },
+    // afterLeave(el) {
+    //   console.log("afterLeave");
+    // },
+    // leaveCancelled(el) {
+    //   console.log("leaveCancelled");
+    // },
   },
 };
 </script>
@@ -138,7 +194,12 @@ export default {
   animation: slide-in 2s ease;
 }
 .slide-leave-active {
+  position: absolute;
+  width: 100%;
   animation: slide-out 2s ease;
+}
+.slide-move{
+  transition: transform 1s;
 }
 
 .caixa {
