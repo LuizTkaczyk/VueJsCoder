@@ -10,8 +10,8 @@ export default new Vuex.Store({
         //     { id: 2, nome: 'Produto 2', quantidade: 10, preco: 22.99 },
         //    { id: 3, nome: 'Produto 3', quantidade: 1, preco: 43.18 },
         ],
-        quantidade:0,
-        preco:0
+        quantidade:2,
+        preco:13.92
 
     },
     getters:{
