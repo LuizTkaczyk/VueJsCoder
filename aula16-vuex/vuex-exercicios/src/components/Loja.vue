@@ -12,6 +12,8 @@
 
 <script>
 
+import {mapActions} from 'vuex'
+
 export default {
     data() {
         return {
@@ -21,6 +23,7 @@ export default {
         }
     },
     methods: {
+        ...mapActions(['adicionarProduto']),//vindo de store.js
         adicionar() {
             const produto = {
                 id: this.sequencia,
@@ -29,8 +32,12 @@ export default {
                 preco: this.preco
             }
             this.sequencia++
-            // eslint-disable-next-line
-            console.log(produto)
+           //this.$store.state.produtos.push(produto)
+
+           //usando a função adicionarProduto vinda de store.js para adicionar produtos
+           //this.$store.commit('adicionarProduto', produto)
+           //this.adicionarProduto(produto)
+           this.$store.dispatch('adicionarProduto', produto)
         }
     }
 }
