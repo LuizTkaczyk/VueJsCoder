@@ -32,7 +32,7 @@ import { mapGetters } from "vuex";
 export default {
   computed: {
     //precisa usar o spread pois existem outras propriedades computadas!!
-    ...mapGetters({
+    ...mapGetters('carrinho',{
       total: "valorTotal",
     }),
 
@@ -41,7 +41,7 @@ export default {
     //    return this.$store.getters.valorTotal
     // },
     produtos() {
-      return this.$store.state.produtos;
+      return this.$store.state.carrinho.produtos; //acessando carrinho vindos de modules
     },
   },
 };
