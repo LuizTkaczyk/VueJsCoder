@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>Calculadora bolada</h1>]
+    <h1>Calculadora Bolada</h1>
     <Calculator></Calculator>
   </div>
 </template>
