@@ -1,0 +1,17 @@
+acessando o postgre
+psql -U postgres
+senha 123456
+
+criando um banco de dados
+create database -nome da tabela-
+
+acessando o banco de dados
+\c -nome da tabela-
+
+listando as tabelas
+\dt
+
+Sobre o knex : nessa aplicação a versão utilizada é a npm install knex@0.15.2 -E -g
+
+criando migrations
+knex migrate:make create_table_users
