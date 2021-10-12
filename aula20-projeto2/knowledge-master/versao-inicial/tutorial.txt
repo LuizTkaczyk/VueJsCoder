@@ -1,3 +1,7 @@
+Para iniciar o backend 
+npm start
+
+****************************************************
 acessando o postgre
 psql -U postgres
 senha 123456
@@ -10,7 +14,7 @@ acessando o banco de dados
 
 listando as tabelas
 \dt
-
+****************************************************************************************
 Sobre o knex : nessa aplicação a versão utilizada é a npm install knex@0.15.2 -E -g
 
 criando migrations
