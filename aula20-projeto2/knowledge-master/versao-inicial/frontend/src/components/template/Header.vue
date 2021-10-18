@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <a href="" class="toggle" @click="toggleMenu" v-if="!hideToggle">
+    <a class="toggle" @click="toggleMenu" v-if="!hideToggle">
       <i class="fa fa-lg" :class="icon"></i>
     </a>
     <h1 class="title">
@@ -11,18 +11,22 @@
 
 <script>
 export default {
-  name: "Header",
+  name: 'Header',
   props: {
     title: String,
     hideToggle: Boolean,
   },
   computed: {
     icon() {
-      return "fa-angle-left";
+        // alterando a direção da seta que esconde o menu
+      return this.$store.state.isMenuVisible ?  "fa-angle-left" : "fa-angle-down";
     },
   },
   methods: {
-    toggleMenu() {},
+    toggleMenu() {
+      //chamando a função que está dentro de store.js
+      this.$store.commit("toggleMenu");
+    },
   },
 };
 </script>
@@ -59,7 +63,7 @@ header.header > a.toggle {
   align-items: center;
 }
 
-header.header > a.toggle:hover{
-    background-color: rgba(0, 0, 0, 0.219);
+header.header > a.toggle:hover {
+  background-color: rgba(0, 0, 0, 0.219);
 }
 </style>
