@@ -1,4 +1,4 @@
-//area de armazenamento entre os componentes (uma comunicação entre dos componentes)
+//area de armazenamento entre os componentes (uma comunicação entre dos componentes com o VUEX)
 import Vue from 'vue'
 import Vuex from 'vuex'
 
@@ -6,7 +6,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state:{
-        isMenuVisible: true
+        isMenuVisible: true,
+        user:{
+            name: 'Usuario Mock',
+            email:'mock@luiz.com.br'
+        }
     },
     mutations:{
         toggleMenu(state, isVisible){
@@ -15,7 +19,7 @@ export default new Vuex.Store({
             }else{
                 state.isMenuVisible = isVisible
             }
-            console.log('toggle munu = ' + state.isMenuVisible)
+            
         }
     }
 })

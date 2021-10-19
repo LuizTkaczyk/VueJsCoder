@@ -4,22 +4,30 @@
       <i class="fa fa-lg" :class="icon"></i>
     </a>
     <h1 class="title">
-      {{ title }}
+    
+      <router-link to="/">  {{ title }}</router-link>
     </h1>
+
+    <UserDropdown v-if="!hideUserDropdown"></UserDropdown>
   </header>
 </template>
 
 <script>
+import UserDropdown from "./UserDropdown";
 export default {
-  name: 'Header',
+  components: { UserDropdown },
+  name: "Header",
   props: {
     title: String,
     hideToggle: Boolean,
+    hideUserDropdown: Boolean,
   },
   computed: {
     icon() {
-        // alterando a direção da seta que esconde o menu
-      return this.$store.state.isMenuVisible ?  "fa-angle-left" : "fa-angle-down";
+      // alterando a direção da seta que esconde o menu
+      return this.$store.state.isMenuVisible
+        ? "fa-angle-left"
+        : "fa-angle-down";
     },
   },
   methods: {
@@ -64,6 +72,9 @@ header.header > a.toggle {
 }
 
 header.header > a.toggle:hover {
+   color: white;
   background-color: rgba(0, 0, 0, 0.219);
 }
+
+
 </style>

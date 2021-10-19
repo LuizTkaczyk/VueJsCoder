@@ -1,7 +1,7 @@
 <template>
 <!-- escondendo o menu da aplicação com uma css -->
   <div id="app" :class="{ 'hide-menu': !isMenuVisible}">
-    <Header title="Cod3r - Projeto 2" :hideToggle="false"></Header>
+    <Header title="Cod3r - Projeto 2" :hideToggle="false" :hideUserDropdown="false"></Header>
     <Menu></Menu>
     <Content></Content>
     <Footer></Footer>
