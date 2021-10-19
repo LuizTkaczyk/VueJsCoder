@@ -19,3 +19,12 @@ Sobre o knex : nessa aplicação a versão utilizada é a npm install knex@0.15.
 
 criando migrations
 knex migrate:make create_table_users
+
+"id": 4,
+"name": "luiz",
+"email": "luiz@luiz.com",
+"admin": true,
+"iat": 1634655458,
+"exp": 1634914658,
+"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NCwibmFtZSI6Imx1aXoiLCJlbWFpbCI6Imx1aXpAbHVpei5jb20iLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNjM0NjU1NDU4LCJleHAiOjE2MzQ5MTQ2NTh9.1i7rg36_-ywPofJmPKn644FX4QWMbGR-ywSDwaGfii4"
+}
