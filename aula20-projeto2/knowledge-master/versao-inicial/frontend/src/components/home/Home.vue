@@ -40,4 +40,10 @@ export default {
 
 <style>
 
+.stats{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
 </style>
