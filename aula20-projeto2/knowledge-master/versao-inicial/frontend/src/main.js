@@ -7,6 +7,8 @@ import App from './App'
 
 import router from './config/router'
 
+import './config/msgs'
+
 Vue.config.productionTip = false
 
 //Token temporario
