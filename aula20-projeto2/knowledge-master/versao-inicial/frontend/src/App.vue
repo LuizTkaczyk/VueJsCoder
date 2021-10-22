@@ -1,8 +1,8 @@
 <template>
 <!-- escondendo o menu da aplicação com uma css -->
-  <div id="app" :class="{ 'hide-menu': !isMenuVisible}">
-    <Header title="Cod3r - Projeto 2" :hideToggle="false" :hideUserDropdown="false"></Header>
-    <Menu></Menu>
+  <div id="app" :class="{ 'hide-menu': !isMenuVisible || !user}">
+    <Header title="Cod3r - Projeto 2" :hideToggle="!user" :hideUserDropdown="!user"></Header>
+    <Menu v-if="user"></Menu>
     <Content></Content>
     <Footer></Footer>
   </div>
@@ -20,7 +20,7 @@ export default {
   name: "App",
 
   components: { Header, Menu, Footer, Content },
-  computed:mapState(['isMenuVisible'])
+  computed:mapState(['isMenuVisible', 'user'])
 };
 </script>
 

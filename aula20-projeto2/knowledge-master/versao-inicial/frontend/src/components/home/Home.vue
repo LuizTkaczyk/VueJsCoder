@@ -1,49 +1,47 @@
 <template>
-
-<div class="home">
-    <PageTitle icon="fa fa-home" main="Dashboard" sub="Base de conhecimento"></PageTitle>
-    <div class="stats">
-        <Stat title="Categorias" :value="stat.categories" icon="fa fa-folder" color="#d54d50"></Stat>
-        <Stat title="Artigos" :value="stat.articles" icon="fa fa-file" color="#3bc480"></Stat>
-        <Stat title="Categorias" :value="stat.users" icon="fa fa-user" color="#3282cd"></Stat>
+    <div class="home">
+        <PageTitle icon="fa fa-home" main="Dashboard"
+            sub="Base de Conhecimento" />
+        <div class="stats">
+            <Stat title="Categorias" :value="stat.categories"
+                icon="fa fa-folder" color="#d54d50" />
+            <Stat title="Artigos" :value="stat.articles"
+                icon="fa fa-file" color="#3bc480" />
+            <Stat title="Usuários" :value="stat.users"
+                icon="fa fa-user" color="#3282cd" />
+        </div>
     </div>
-</div>
-  
 </template>
 
 <script>
 import PageTitle from '../template/PageTitle'
 import Stat from './Stat'
 import axios from 'axios'
-import {baseApiUrl} from '@/global'
+import { baseApiUrl } from '@/global'
+
 export default {
-    components:{PageTitle, Stat},
     name: 'Home',
-    data() {
+    components: { PageTitle, Stat },
+    data: function() {
         return {
-            stat:{}
+            stat: {}
         }
     },
     methods: {
-        getStats(){
+        getStats() {
             axios.get(`${baseApiUrl}/stats`).then(res => this.stat = res.data)
         }
     },
-
-    //chamada no momento em que o componente for montado (montando as estatísticas)
     mounted() {
         this.getStats()
-    },
-
+    }
 }
 </script>
 
 <style>
-
-.stats{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
+    .stats {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
 </style>
